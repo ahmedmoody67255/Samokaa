@@ -108,21 +108,29 @@ body {
   transition: 0.3s;
 }
 
-/* Gallery Section */
-.section { width: min(980px, 92vw); margin: auto; padding: 80px 0; text-align: center; }
+/* Gallery Section - Fixed Grid Layout */
+.section { 
+  width: min(1000px, 92vw); 
+  margin: auto; 
+  padding: 80px 0; 
+  text-align: center; 
+}
+
 .label { font-size: 0.68rem; letter-spacing: 3px; color: #ffc9d9; font-weight: 800; }
 .section h2 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 9px 0 19px; }
 .sub { opacity: 0.78; margin-bottom: 28px; }
 
+/* شبكة متوازنة لمنع التداخل */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
 }
 
 .photo {
   position: relative;
-  min-height: 280px;
+  height: 350px;
   overflow: hidden;
   border-radius: 23px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -133,32 +141,22 @@ body {
 .photo img {
   width: 100%;
   height: 100%;
-  min-height: 280px;
   object-fit: cover;
   display: block;
 }
 
-/* التنسيق الخاص بالصورة الأولى (التورتة) عشان تبقى بارزة وظاهرة جدًا */
-.photo.tall.main-cake { 
-  grid-column: span 7; 
-  grid-row: span 2; 
-  min-height: 575px; 
-}
-.photo.tall.main-cake img { 
-  min-height: 575px; 
-}
-
-.photo:nth-child(2), .photo:nth-child(3), .photo:nth-child(5) { grid-column: span 5; }
-.photo.wide { grid-column: span 7; }
-
+/* تحسين شكل النصوص المكتوبة أسفل كل صورة */
 .photo figcaption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 38px 15px 13px;
-  background: linear-gradient(transparent, rgba(19, 8, 25, 0.75));
-  font-size: 0.82rem;
+  padding: 20px 15px 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  z-index: 2;
 }
 
 /* Final Section */
@@ -171,12 +169,3 @@ body {
 }
 
 footer { text-align: center; padding: 24px; font-size: 0.72rem; opacity: 0.6; }
-
-@media (max-width: 700px) {
-  .gallery { grid-template-columns: 1fr; }
-  .photo, .photo.tall, .photo.wide, .photo:nth-child(2), .photo:nth-child(3), .photo:nth-child(5) {
-    grid-column: span 1;
-    grid-row: auto;
-    min-height: 280px;
-  }
-}
